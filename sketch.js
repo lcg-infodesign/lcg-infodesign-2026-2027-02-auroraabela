@@ -1,7 +1,7 @@
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  background(182, 224, 184);
+  background(220);
 
   //disegno glifi
   let numeroGlifi = 100;
@@ -38,19 +38,37 @@ function mioGlifo(_x, _y, _size, _corners) {
 
 
   for(let i = 0; i < 1; i++) {
+
+    colorMode (HSB)
     
     const formaTesta = random (0, _size/2);
-    const coloreTesta = color(random(255, 60), 150, 255 );
+    const coloreTesta = color(random(360), 60, 100);
+
     const aperturaBocca = random (-1, _size*0.2);
     const larghezzaBocca = random (_size/3, _size/5);
+
+    const xPupilla1 = random (_size/3.3, _size/2.9);
+    const xPupilla2 = random (_size/2, _size/2.3);
+    const xPupilla3 = random (_size/1.6, _size/1.8);
+    const yPupilla = random (_size/2.7, _size/3.3);
 
     push();
 
     fill(coloreTesta);
     square(0, 0, 50, formaTesta);
     
-    fill(0, 0, 0);
+    fill("black");
     ellipse(_size*0.45, _size*0.7, larghezzaBocca, aperturaBocca);
+    
+    fill("white");
+    circle (_size/3, _size/3, _size/6);
+    circle (_size/2.2, _size/3, _size/6);
+    circle (_size/1.7, _size/3, _size/6);
+
+    fill("black");
+    circle(xPupilla1, yPupilla, _size/25);
+    circle(xPupilla2, yPupilla, _size/25);
+    circle(xPupilla3, yPupilla, _size/25);
 
     pop();
   }
