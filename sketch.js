@@ -52,10 +52,11 @@ function mioGlifo(_x, _y, _size, _corners) {
     const xPupilla3 = random (_size/1.6, _size/1.8);
     const yPupilla = random (_size/2.7, _size/3.3);
 
-    const lato = 50;
+    const lato = _size/1.1;
     const xLinea1 = lato*0.3;
     const xLinea2 = lato*0.7;
     const lunghezzaAntenna = random (_size*0.10, _size*0.20);
+    const inclinazione = lato*(random (0, 0.2));
     
 
     push();
@@ -76,12 +77,12 @@ function mioGlifo(_x, _y, _size, _corners) {
     circle(xPupilla2, yPupilla, _size/25);
     circle(xPupilla3, yPupilla, _size/25);
 
-    line(xLinea1, 0, xLinea1-5, -lunghezzaAntenna);
-    line(xLinea2, 0, xLinea2+5, -lunghezzaAntenna);
+    line(xLinea1, 0, xLinea1 - inclinazione, -lunghezzaAntenna);
+    line(xLinea2, 0, xLinea2 + inclinazione, -lunghezzaAntenna);
 
     fill("black");
-    circle(xLinea1 - 5, -lunghezzaAntenna, _size/20);
-    circle(xLinea2 +5, -lunghezzaAntenna, _size/20);
+    circle(xLinea1 - inclinazione, -lunghezzaAntenna, _size/20);
+    circle(xLinea2 + inclinazione, -lunghezzaAntenna, _size/20);
 
     pop();
   }
