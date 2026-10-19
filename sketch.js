@@ -40,6 +40,7 @@ function mioGlifo(_x, _y, _size, _corners) {
   for(let i = 0; i < 1; i++) {
 
     colorMode (HSB)
+    angleMode (DEGREES)
     
     const formaTesta = random (0, _size/2);
     const coloreTesta = color(random(360), 60, 100);
@@ -56,7 +57,7 @@ function mioGlifo(_x, _y, _size, _corners) {
     const xLinea1 = lato*0.3;
     const xLinea2 = lato*0.7;
     const lunghezzaAntenna = random (_size*0.10, _size*0.20);
-    const inclinazione = lato*(random (0, 0.2));
+    const inclinazioneAntenna = random(0, 45);
     
 
     push();
@@ -77,12 +78,28 @@ function mioGlifo(_x, _y, _size, _corners) {
     circle(xPupilla2, yPupilla, _size/25);
     circle(xPupilla3, yPupilla, _size/25);
 
-    line(xLinea1, 0, xLinea1 - inclinazione, -lunghezzaAntenna);
-    line(xLinea2, 0, xLinea2 + inclinazione, -lunghezzaAntenna);
+    pop();
+
+    push();
+
+    translate(xLinea1, 0);
+    rotate(-inclinazioneAntenna);
+    line(0, 0, 0, -lunghezzaAntenna);
 
     fill("black");
-    circle(xLinea1 - inclinazione, -lunghezzaAntenna, _size/20);
-    circle(xLinea2 + inclinazione, -lunghezzaAntenna, _size/20);
+    circle(0, -lunghezzaAntenna, _size/20);
+
+    pop();
+
+    push();
+
+    translate(xLinea2, 0);
+    rotate(inclinazioneAntenna);
+    line(0, 0, 0, -lunghezzaAntenna);
+
+    fill("black");
+    circle(0, -lunghezzaAntenna, _size/20);
+
 
     pop();
   }
