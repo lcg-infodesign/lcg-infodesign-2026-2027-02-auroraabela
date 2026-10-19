@@ -1,18 +1,108 @@
-function preload() {
-  // put preload code here
-}
-
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  console.log('p5.js version:', p5.VERSION);
-  // put setup code here
-  const message =
-    "This is a template repository\nfor the course Laboratorio di Computergrafica\nCommunication Design, Politecnico di Milano";
-  textAlign(CENTER, CENTER);
-  textSize(16);
-  text(message, width / 2, height / 2);
+
+  background(249, 242, 255);
+
+  //disegno glifi
+  let numeroGlifi = 100;
+  let numeroColonne = ceil(sqrt(numeroGlifi));
+  let numeroRighe = sqrt(numeroGlifi);
+
+  let dimColonna = windowWidth/numeroColonne;
+  let dimRiga = windowHeight/numeroRighe;
+
+  let xCorrente = 0;
+  let yCorrente = 0;
+
+  for(let g = 0; g < numeroGlifi; g++) {
+    mioGlifo(xCorrente + dimColonna/2, yCorrente + dimRiga/2, dimRiga*0.8 );
+    xCorrente = xCorrente + dimColonna;
+
+    if(xCorrente >= windowWidth) {
+      xCorrente = 0;
+      yCorrente = yCorrente + dimRiga;
+    }
+  }
+
 }
 
 function draw() {
-  // put drawing code here
+  //
+}
+
+
+function mioGlifo(_x, _y, _size, _corners) {
+  push();
+
+  translate(_x, _y);
+
+
+  for(let i = 0; i < 1; i++) {
+
+    colorMode (HSB)
+    angleMode (DEGREES)
+    
+    const formaTesta = random (0, _size/2);
+    const coloreTesta = color(random(360), 60, 100);
+
+    const aperturaBocca = random (-1, _size/4);
+    const larghezzaBocca = random (_size/3, _size/5);
+
+    const xPupilla1 = random (_size/3.3, _size/2.9);
+    const xPupilla2 = random (_size/2, _size/2.3);
+    const xPupilla3 = random (_size/1.6, _size/1.8);
+    const yPupilla = random (_size/2.7, _size/3.3);
+
+    const lato = _size/1.1;
+    const xLinea1 = lato*0.3;
+    const xLinea2 = lato*0.7;
+    const lunghezzaAntenna = random (_size*0.10, _size*0.20);
+    const inclinazioneAntenna = random(0, 45);
+    
+
+    push();
+
+    fill(coloreTesta);
+    square(0, 0, _size/1.1, formaTesta);
+    
+    fill("black");
+    ellipse(_size*0.45, _size*0.7, larghezzaBocca, aperturaBocca);
+    
+    fill("white");
+    circle (_size/3, _size/3, _size/6);
+    circle (_size/2.2, _size/3, _size/6);
+    circle (_size/1.7, _size/3, _size/6);
+
+    fill("black");
+    circle(xPupilla1, yPupilla, _size/25);
+    circle(xPupilla2, yPupilla, _size/25);
+    circle(xPupilla3, yPupilla, _size/25);
+
+    pop();
+
+    push();
+
+    translate(xLinea1, 0);
+    rotate(-inclinazioneAntenna);
+    line(0, 0, 0, -lunghezzaAntenna);
+
+    fill("black");
+    circle(0, -lunghezzaAntenna, _size/20);
+
+    pop();
+
+    push();
+
+    translate(xLinea2, 0);
+    rotate(inclinazioneAntenna);
+    line(0, 0, 0, -lunghezzaAntenna);
+
+    fill("black");
+    circle(0, -lunghezzaAntenna, _size/20);
+
+
+    pop();
+  }
+
+  pop();
 }
